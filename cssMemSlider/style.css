@@ -25,7 +25,11 @@ body {
     transition: .3s;
 }
 .slider_controls {
-    margin-left: auto;
+    position: absolute;
+    bottom: 16px;
+    right: 0;
+    display: flex;
+    column-gap: 15px;
 }
 .slider_img {
     border-radius: 20px;
@@ -54,10 +58,10 @@ input[type='radio'] {
     z-index: -1;
     opacity: 0;
 }
-label {
+/* label {
     position: absolute;
     z-index: 1;
-}
+} */
 label:hover {
     cursor: pointer;
 }
@@ -81,6 +85,7 @@ label#one {
     bottom: 20px;
     right: 60px;
 }
+/* пролистывание слайдов */
 #one:checked ~ .slider_body .slider_items{
     transform: translateX(0);
 }
@@ -93,6 +98,7 @@ label#one {
 #four:checked ~ .slider_body .slider_items{
     transform: translateX(-2100px);
 }
+/* смещение текста при пролистывании слайдов */
 #one:checked ~ .slider_body .firts-card p{
     animation-name: trasnslateText;
     animation-duration: .4s;
@@ -109,39 +115,22 @@ label#one {
     animation-name: trasnslateText;
     animation-duration: .4s;
 }
-#one:checked + label::before{
+/* изменение фона подменного чекбокса при клике на чекбоксы */
+#one:checked ~ .slider_body .slider_controls label[for='one']::before{
     background-color: transparent;
 }
-#two:checked + label::before{
+#two:checked ~ .slider_body .slider_controls label[for='two']::before{
     background-color: transparent;
 }
-#three:checked + label::before{
+#three:checked ~ .slider_body .slider_controls label[for='three']::before{
     background-color: transparent;
 }
-#four:checked + label::before{
+#four:checked ~ .slider_body .slider_controls label[for='four']::before{
     background-color: transparent;
 }
 @media (max-width:730px) {
     p {
         margin-top: 50px;
-    }
-    label#one,label#two,label#three,label#four {
-        bottom: 54px;
-    }
-    label#four {
-        right: calc(50% - 54px);
-
-    }
-    label#three {
-        right: calc(50% - 27px);
-  
-    }
-    label#two {
-        right: calc(50%);
-
-    }
-    label#one {
-        right: calc(50% + 27px);;
     }
     .slider {
         width: 300px;
@@ -160,6 +149,11 @@ label#one {
     }
     label {
         padding: 7px;
+    }
+    .slider_controls {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 50px;
     }
 }
 @keyframes trasnslateText {
